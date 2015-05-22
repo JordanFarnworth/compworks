@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       resources :users, except: [:new, :edit]
       resources :companies, except: [:new, :edit] do
         get 'service_logs' => 'companies#service_logs'
+        post 'service_logs' => 'service_logs#create'
         get 'inventory_items' => 'companies#inventory_items'
+        post 'inventory_items' => 'inventory_items#create'
       end
     end
   end

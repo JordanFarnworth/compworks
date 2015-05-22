@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
   def index
     if params[:search_term]
       t = params[:search_term]
-      @companies = @companies.where('name LIKE ?', "%#{t}%")
+      @companies = @companies.where('name OR doctor_name LIKE ?', "%#{t}%")
     end
     respond_to do |format|
       format.json do
@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company ||= Company.new
+    @company = Company.new company_params
     respond_to do |format|
       format.html do
         if @company.save
@@ -79,5 +79,10 @@ class CompaniesController < ApplicationController
         render json: inventory_items_json(@inventory_items), status: :ok
       end
     end
+  end
+
+  private
+  def company_params
+    params.require(:company).permit(:name, :network, :domain, :antivirus, :router1, :router2)
   end
 end

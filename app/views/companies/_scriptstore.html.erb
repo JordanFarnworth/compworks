@@ -1,0 +1,51 @@
+<script type="text/x-handlebars-template" id="inventory-item-data">
+  <tr>
+    <td>{{id}}</td>
+    <td>{{features.computer_name}}</td>
+    <td>{{features.hard_drive}}</td>
+    <td>{{features.operating_system}}</td>
+    <td>{{features.processor}}</td>
+    <td>{{features.ram}}</td>
+    <td id="logmein"></td>
+    <td>
+      <a href="#" id="edit-inventory-item-{{id}}">
+        <i class="fa fa-pencil pull-right"></i>
+      </a>
+    </td>
+    <td>
+      <a href="#" id="delete-inventory-item-{{id}}">
+        <i class="fa fa-trash pull-right"></i>
+      </a>
+    </td>
+  </tr>
+</script>
+
+<script type="text/x-handlebars-template" id="service-log-data">
+  <tr>
+    <td>{{id}}</td>
+    <td>{{date}}</td>
+    <td>{{length}}</td>
+    <td>{{service_preformed}}</td>
+    <td>{{notes}}</td>
+    <td>
+      <a href="#">
+        <i class="fa fa-pencil pull-right" id="service-log-edit-{{id}}"></i>
+      </a>
+    </td>
+    <td>
+      <a href="#">
+        <i class="fa fa-trash pull-right" id="delete-service-log-{{id}}"></i>
+      </a>
+    </td>
+  </tr>
+
+</script>
+
+<script type="text/x-handlebars-template" id="company-data">
+    <h4>AntiVirus: {{antivirus}}</h4>
+    <h4>Name of Doctor: {{doctor_name}}</h4>
+    <h4>Domain: {{domain}}</h4>
+    <h4>Network: {{network}}</h4>
+    <h4>Router 1: {{router1}}</h4>
+    <h4>Router 2: {{router2}}</h4>
+</script>

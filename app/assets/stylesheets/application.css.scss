@@ -22,7 +22,12 @@
 @import '../../../vendor/assets/stylesheets/_bootswatch.scss';
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 @import 'font-awesome';
+@import 'default';
+@import 'default.date';
 
+.center {
+  text-align: center;
+}
 
 html, body {width: 100%}
 * {box-sizing: border-box}

@@ -1,7 +1,11 @@
 class LoginController < ApplicationController
 
-  def index
+  skip_before_action :check_session
 
+  def index
+    if logged_in?
+      redirect_to :companies
+    end
   end
 
   def verify
@@ -17,7 +21,8 @@ class LoginController < ApplicationController
         expires: 1.week.from_now
       }
       flash.clear
-      redirect_to :root
+      flash[:success] = "#{user.name} has been logged in"
+      redirect_to :companies
     end
   end
 

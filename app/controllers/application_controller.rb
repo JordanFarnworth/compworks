@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
   skip_before_filter :verify_authenticity_token, if: 'api_request?'
 
   before_action :set_current_user
+  before_action :check_session
+
+  def check_session
+    unless logged_in?
+      redirect_to :root
+      flash[:alert] = 'You must be logged in to view that page'
+    end  
+  end
 
  def api_request?
    request.format.symbol == :json

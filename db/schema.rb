@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514045937) do
+ActiveRecord::Schema.define(version: 20150518160726) do
 
   create_table "api_keys", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(version: 20150514045937) do
     t.string   "antivirus"
     t.string   "router1"
     t.string   "router2"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "state"
     t.string   "name"
+    t.string   "doctor_name"
   end
 
   create_table "inventory_items", force: :cascade do |t|

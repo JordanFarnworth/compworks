@@ -13,8 +13,12 @@ Rails.application.routes.draw do
 
   scope :api, defaults: { format: :json }, constraints: { format: :json } do
     scope :v1 do
+      get 'undelete' => 'companies#deleted'
       resources :users, except: [:new, :edit]
+      resources :inventory_items, only: [:update, :destroy]
+      resources :service_logs, only: [:update, :destroy]
       resources :companies, except: [:new, :edit] do
+        put 'undelete' => 'companies#undelete'
         get 'service_logs' => 'companies#service_logs'
         post 'service_logs' => 'service_logs#create'
         get 'inventory_items' => 'companies#inventory_items'

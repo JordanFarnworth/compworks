@@ -9,3 +9,21 @@
 .edit-icon {
   margin-top: 20px ;
 }
+
+.top-margin-30{
+  margin-top:30px;
+}
+
+.left-margin-10{
+  margin-left:10px;
+}
+
+.hide-until-hover{
+  display:none;
+}
+
+.company-display:hover{
+  .hide-until-hover{
+    display:inline-block;
+  }
+}

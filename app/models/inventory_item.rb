@@ -26,4 +26,9 @@ class InventoryItem < ActiveRecord::Base
     end
   end
 
+  def destroy
+   self.state = :deleted
+   save
+  end
+
 end

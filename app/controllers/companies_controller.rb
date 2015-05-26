@@ -4,12 +4,37 @@ class CompaniesController < ApplicationController
   include Api::V1::InventoryItem
 
   before_action :find_companies, only: [:index]
-  before_action :find_company, only: [:show, :edit, :service_logs, :inventory_items]
+  before_action :find_company, only: [:show, :edit, :service_logs, :inventory_items, :update, :destroy]
 
   def index
     if params[:search_term]
       t = params[:search_term]
-      @companies = @companies.where('name OR doctor_name LIKE ?', "%#{t}%")
+      @companies = @companies.where('name LIKE ? OR doctor_name LIKE ?', "%#{t}%", "%#{t}%")
+    end
+    respond_to do |format|
+      format.json do
+        render json: companies_json(@companies), status: :ok
+      end
+      format.html do
+      end
+    end
+  end
+
+  def undelete
+    @company = Company.find params[:id] || params[:company_id]
+    respond_to do |format|
+      format.json do
+        if @company.update company_params
+          render json: @company, status: :ok
+        end
+      end
+    end
+  end
+
+  def deleted
+    if params[:search_term]
+      t = params[:search_term]
+      @companies = Company.deleted.where('name LIKE ? OR doctor_name LIKE ?', "%#{t}%", "%#{t}%")
     end
     respond_to do |format|
       format.json do
@@ -55,10 +80,30 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      format.json do
+        if @company.update company_params
+          render json: @company, status: :ok
+        end
+      end
+    end
+  end
+
+  def destroy
+    @company.destroy
+    respond_to do |format|
+      format.json do
+        render nothing: true, status: :no_content
+        flash[:success] = 'Company deleted!'
+      end
+    end
+  end
+
   def find_company
-    @company = Company.find params[:id] || params[:company_id]
-    @inventory_items = @company.inventory_items
-    @service_logs = @company.service_logs
+    @company = Company.active.find params[:id] || params[:company_id]
+    @inventory_items = @company.inventory_items.active
+    @service_logs = @company.service_logs.active
   end
 
   def find_companies
@@ -83,6 +128,6 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :network, :domain, :antivirus, :router1, :router2)
+    params.require(:company).permit(:name, :network, :domain, :antivirus, :router1, :router2, :doctor_name, :state)
   end
 end

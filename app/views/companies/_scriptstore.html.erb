@@ -1,51 +1,67 @@
+<!-- inventory item table data -->
 <script type="text/x-handlebars-template" id="inventory-item-data">
   <tr>
-    <td>{{id}}</td>
-    <td>{{features.computer_name}}</td>
-    <td>{{features.hard_drive}}</td>
-    <td>{{features.operating_system}}</td>
-    <td>{{features.processor}}</td>
-    <td>{{features.ram}}</td>
-    <td id="logmein"></td>
+    <td id="ii-id-{{id}}">{{id}}</td>
+    <td id="ii-computer-name-{{id}}">{{features.computer_name}}</td>
+    <td id="ii-hard-drive-{{id}}">{{features.hard_drive}}</td>
+    <td id="ii-os-{{id}}">{{features.operating_system}}</td>
+    <td id="ii-processor-{{id}}">{{features.processor}}</td>
+    <td id="ii-ram-{{id}}">{{features.ram}}</td>
+    <td class="logmein"></td>
     <td>
-      <a href="#" id="edit-inventory-item-{{id}}">
+      <a href="#" id="edit-inventory-item-{{id}}" name="{{id}}">
         <i class="fa fa-pencil pull-right"></i>
       </a>
     </td>
     <td>
-      <a href="#" id="delete-inventory-item-{{id}}">
+      <a href="#" id="delete-inventory-item-{{id}}" name="{{id}}">
         <i class="fa fa-trash pull-right"></i>
       </a>
     </td>
   </tr>
 </script>
 
+<!-- service log table data -->
 <script type="text/x-handlebars-template" id="service-log-data">
   <tr>
-    <td>{{id}}</td>
-    <td>{{date}}</td>
-    <td>{{length}}</td>
-    <td>{{service_preformed}}</td>
-    <td>{{notes}}</td>
+    <td id="sl-id-{{id}}">{{id}}</td>
+    <td id="sl-date-{{id}}">{{date}}</td>
+    <td id="sl-length-{{id}}">{{length}}</td>
+    <td id="sl-sp-{{id}}">{{service_preformed}}</td>
+    <td id="sl-notes-{{id}}">{{notes}}</td>
     <td>
       <a href="#">
-        <i class="fa fa-pencil pull-right" id="service-log-edit-{{id}}"></i>
+        <i class="fa fa-pencil pull-right" id="service-log-edit-{{id}}" name="{{id}}"></i>
       </a>
     </td>
     <td>
       <a href="#">
-        <i class="fa fa-trash pull-right" id="delete-service-log-{{id}}"></i>
+        <i class="fa fa-trash pull-right" id="delete-service-log-{{id}}" name="{{id}}"></i>
       </a>
     </td>
   </tr>
-
 </script>
 
+<!-- company page data -->
 <script type="text/x-handlebars-template" id="company-data">
-    <h4>AntiVirus: {{antivirus}}</h4>
-    <h4>Name of Doctor: {{doctor_name}}</h4>
-    <h4>Domain: {{domain}}</h4>
-    <h4>Network: {{network}}</h4>
-    <h4>Router 1: {{router1}}</h4>
-    <h4>Router 2: {{router2}}</h4>
+    <div class="col-md-6 col-md-offset-3 well company-display top-margin-30">
+      <span class="pull-right hide-until-hover text-info">
+        <i class="fa fa-building" id="edit-company-features">
+        </i>
+        <i class="fa fa-times left-margin-10" id="delete-company">
+        </i>
+      </span>
+      <h4 class="text-info">Name of Doctor: </h4>
+      <h2>{{doctor_name}}</h2>
+      <h4 class="text-info">Antivirus: </h4><h2>{{antivirus}}</h2>
+      <h4 class="text-info">Domain: </h4><h2>{{domain}}</h2>
+      <h4 class="text-info">Network: </h4><h2>{{network}}</h2>
+      <h4 class="text-info">Router 1: </h4><h2>{{router1}}</h2>
+      <h4 class="text-info">Router 2: </h4><h2>{{router2}}</h2>
+    </div>
+</script>
+
+<!-- company title -->
+<script type="text/x-handlebars-template" id="company-title">
+  <h1>{{name}}</h1>
 </script>

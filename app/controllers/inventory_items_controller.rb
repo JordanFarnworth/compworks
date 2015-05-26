@@ -1,6 +1,6 @@
 class InventoryItemsController < ApplicationController
 
-  before_action :find_inventory_item, only: [:show]
+  before_action :find_inventory_item, only: [:show, :update, :destroy]
 
   def find_inventory_item
     @inventory_item = InventoryItem.active.find(params[:id])
@@ -15,6 +15,27 @@ class InventoryItemsController < ApplicationController
         else
           render json: { errors: @inventory_item.errors.full_messages }, status: :bad_request
         end
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      format.json do
+        if @inventory_item.update inventory_item_params
+          render json: @inventory_item, status: :ok
+        else
+          render json: { errors: @inventory_item.errors.full_messages }, status: :bad_request
+        end
+      end
+    end
+  end
+
+  def destroy
+    @inventory_item.destroy
+    respond_to do |format|
+      format.json do
+        render nothing: true, status: :no_content
       end
     end
   end

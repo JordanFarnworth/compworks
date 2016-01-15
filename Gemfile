@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -55,14 +55,6 @@ gem 'autoprefixer-rails'
 gem 'will_paginate-bootstrap'
 gem 'font-awesome-rails'
 gem 'vider', github: 'wazery/vider'
-
-group :mysql do
-  gem 'mysql2'
-end
-
-group :postgres do
-  gem 'pg'
-end
 
 gem 'clockwork', git: 'https://github.com/tomykaira/clockwork.git'
 gem 'cancan'

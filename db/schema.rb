@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150518160726) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "api_keys", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "purpose"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150518160726) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id"
+  add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "network"
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150518160726) do
     t.text     "features"
   end
 
-  add_index "inventory_items", ["company_id"], name: "index_inventory_items_on_company_id"
+  add_index "inventory_items", ["company_id"], name: "index_inventory_items_on_company_id", using: :btree
 
   create_table "login_sessions", force: :cascade do |t|
     t.integer  "user_id"
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150518160726) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "login_sessions", ["user_id"], name: "index_login_sessions_on_user_id"
+  add_index "login_sessions", ["user_id"], name: "index_login_sessions_on_user_id", using: :btree
 
   create_table "service_logs", force: :cascade do |t|
     t.datetime "date"
@@ -69,7 +72,7 @@ ActiveRecord::Schema.define(version: 20150518160726) do
     t.integer  "company_id"
   end
 
-  add_index "service_logs", ["company_id"], name: "index_service_logs_on_company_id"
+  add_index "service_logs", ["company_id"], name: "index_service_logs_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

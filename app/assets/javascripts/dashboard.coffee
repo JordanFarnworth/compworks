@@ -7,7 +7,6 @@ $('.dashboard.index').ready ->
   wHeight = $(window).height()
   $('.navbar').hide()
 
-
   parallax = ->
     pHeight = $(this).outerHeight()
     pMiddle = pHeight / 2

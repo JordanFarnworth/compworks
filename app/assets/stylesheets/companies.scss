@@ -2,6 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#company-show{
+  padding-top: 75px;
+}
+
+.fixed-panel {
+  min-height: 250px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+
+#company-search-div {
+  padding-top: 50px;
+}
+
+#restore-company-div{
+  padding-top: 50px;
+}
+
 .company-info-tables {
   margin-top: 20px;
 }

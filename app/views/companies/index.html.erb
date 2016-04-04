@@ -1,19 +1,14 @@
-<div class="row" id="company-search-div">
-  <h1 class="col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
-    Search By Company Name
-  </h1>
-
-  <div class="col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-    <input class="form-control" type="text" id="company-name-search" placeholder="Search For a Company..">
+<div class="container-fluid">
+  <div class="container">
+    <div class="row text-center" id="company-search-div">
+      <h1>Search By Company Name</h1>
+      <div class="col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+          <a href="#" id="restore-company-link">Restore a Deleted Company</a>
+      <div class="col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+        <input class="form-control" type="text" id="company-name-search" placeholder="Search For a Company..">
+      </div>
+    </div>
   </div>
-
-  <br>
-  <br>
-
-  <div class="col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-      <a href="#" id="restore-company-link">Restore a Deleted Company</a>
-  </div>
-
 </div>
 
 <div class="row hide" id="restore-company-div">
@@ -31,5 +26,55 @@
 <div class="row">
   <div class="col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
 
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row text-center">
+      <h2>All Companies</h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>
+            ID
+          </th>
+          <th>
+            Company Name
+          </th>
+          <th>
+            Client Name
+          </th>
+          <th>
+            Created At
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td>
+              <%= company.id %>
+            </td>
+            <td>
+              <%= link_to company.name, company %>
+            </td>
+            <td>
+              <%= company.doctor_name %>
+            </td>
+            <td>
+              <%= company.created_at.strftime('%a %d %b %Y') %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @companies %>
   </div>
 </div>

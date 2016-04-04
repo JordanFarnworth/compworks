@@ -9,13 +9,14 @@ class CompaniesController < ApplicationController
   def index
     if params[:search_term]
       t = params[:search_term]
-      @companies = @companies.where('name LIKE ? OR doctor_name LIKE ?', "%#{t}%", "%#{t}%")
+      @companies = @companies.where('name ILIKE ? OR doctor_name ILIKE ?', "%#{t}%", "%#{t}%")
     end
     respond_to do |format|
       format.json do
         render json: companies_json(@companies), status: :ok
       end
       format.html do
+        @companies = Company.all.active.paginate(page: params[:page], per_page: 10)
       end
     end
   end
@@ -34,7 +35,7 @@ class CompaniesController < ApplicationController
   def deleted
     if params[:search_term]
       t = params[:search_term]
-      @companies = Company.deleted.where('name LIKE ? OR doctor_name LIKE ?', "%#{t}%", "%#{t}%")
+      @companies = Company.deleted.where('name ILIKE ? OR doctor_name ILIKE ?', "%#{t}%", "%#{t}%")
     end
     respond_to do |format|
       format.json do
@@ -102,8 +103,9 @@ class CompaniesController < ApplicationController
 
   def find_company
     @company = Company.active.find params[:id] || params[:company_id]
-    @inventory_items = @company.inventory_items.active
-    @service_logs = @company.service_logs.active
+    @inventory_items = @company.inventory_items.active.paginate(page: params[:page], per_page: 10)
+    @service_logs = @company.service_logs.active.paginate(page: params[:page], per_page: 10)
+    @pos = @company.purchase_orders.paginate(page: params[:page], per_page: 10)
   end
 
   def find_companies

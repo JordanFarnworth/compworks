@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
   has_many :inventory_items
   has_many :service_logs
+  has_many :purchase_orders
 
   scope :active, -> {where(state: :active)}
   scope :deleted, -> {where(state: :deleted)}

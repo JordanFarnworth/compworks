@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518160726) do
+ActiveRecord::Schema.define(version: 20160403232233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,22 @@ ActiveRecord::Schema.define(version: 20150518160726) do
 
   add_index "inventory_items", ["company_id"], name: "index_inventory_items_on_company_id", using: :btree
 
+  create_table "item_joiners", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "purchase_order_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "item_joiners", ["item_id"], name: "index_item_joiners_on_item_id", using: :btree
+  add_index "item_joiners", ["purchase_order_id"], name: "index_item_joiners_on_purchase_order_id", using: :btree
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "login_sessions", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "key"
@@ -61,6 +77,17 @@ ActiveRecord::Schema.define(version: 20150518160726) do
 
   add_index "login_sessions", ["user_id"], name: "index_login_sessions_on_user_id", using: :btree
 
+  create_table "purchase_orders", force: :cascade do |t|
+    t.integer  "po_number"
+    t.string   "vendor"
+    t.integer  "company_id"
+    t.text     "items"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "purchase_orders", ["company_id"], name: "index_purchase_orders_on_company_id", using: :btree
+
   create_table "service_logs", force: :cascade do |t|
     t.datetime "date"
     t.string   "length"
@@ -70,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150518160726) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "company_id"
+    t.boolean  "payment"
   end
 
   add_index "service_logs", ["company_id"], name: "index_service_logs_on_company_id", using: :btree
@@ -83,4 +111,12 @@ ActiveRecord::Schema.define(version: 20150518160726) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "item_joiners", "items"
+  add_foreign_key "purchase_orders", "companies"
 end

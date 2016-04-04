@@ -158,7 +158,8 @@ createServiceLog = ->
         notes: $('#notes-text-area').val()
         company_id: company
     success: (data) ->
-      bootbox.alert 'Service Log Created'
+      bootbox.alert 'Service Log Created', ->
+        window.location = window.location
 
 createInventoryItem = ->
   company = window.location.pathname.match(/\/companies\/(\d+)/)[1]
@@ -176,7 +177,8 @@ createInventoryItem = ->
           operating_system: $('#input-operating-system').val()
           log_me_in: $('#logmein-checkbox').prop('checked')
     success: (data) ->
-      bootbox.alert 'Inventory Item Created'
+      bootbox.alert 'Inventory Item Created', ->
+        window.location = window.location
 
 #load Company Data functions
 loadCompanyData = ->

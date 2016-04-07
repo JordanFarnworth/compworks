@@ -12,17 +12,23 @@ $('.purchase_orders.new').ready ->
 
 createNewPo = ->
   $.ajax '/purchase_orders',
-  type: 'post',
-  dataType: 'json',
-  data:
-    purchase_order:
-      company_id: $('#client-input').attr('data-id')
-      vendor: $('#vendor-input').val()
-      item:   $('#item-input').val()
-      payment: $('#received-input').prop('checked')
-  success: (data) ->
-    bootbox.alert "Purchase Order ##{data.po_number} was created", ->
-      window.location = "/purchase_orders/#{data.id}"
+    type: 'post',
+    dataType: 'json',
+    contentType: false,
+    processData: false,
+    data: buildRequestData()
+    success: (data) ->
+      bootbox.alert "Purchase Order ##{data.po_number} was created", ->
+        window.location = "/purchase_orders/#{data.id}"
+
+buildRequestData = ->
+  formData = new FormData()
+  formData.append 'purchase_order[company_id]', $('#client-input').attr('data-id')
+  formData.append 'purchase_order[vendor]', $('#vendor-input').val()
+  formData.append 'purchase_order[item]', $('#item-input').val()
+  formData.append 'purchase_order[payment]', $('#received-input').prop('checked')
+  formData.append 'purchase_order[image]', $('#InputFile')[0].files[0]
+  formData
 
 
 autocompleteCompanyNameParams = ->

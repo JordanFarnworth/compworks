@@ -1,7 +1,8 @@
 class PurchaseOrdersController < ApplicationController
 
   def index
-    @po = PurchaseOrder.all.paginate(page: params[:page], per_page: 10)
+    @paid_pos = PurchaseOrder.all.paid.paginate(page: params[:page], per_page: 15)
+    @unpaid_pos = PurchaseOrder.all.unpaid.paginate(page: params[:page], per_page: 15)
   end
 
   def show
@@ -32,7 +33,7 @@ class PurchaseOrdersController < ApplicationController
 
   private
   def purchase_order_params
-    params.require(:purchase_order).permit(:po_number, :vendor, :company_id, :item, :payment, :created_at, :updated_at)
+    params.require(:purchase_order).permit(:po_number, :vendor, :company_id, :item, :payment, :created_at, :updated_at, :image)
   end
 
 end

@@ -1,0 +1,30 @@
+<div class="containter-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <% @unpaid_pos.each do |upo| %>
+          <div class="list-group">
+            <a href="/purchase_orders/<%= upo.id %>" class="list-group-item">
+              <h4 class="list-group-item-heading">#<%= upo.po_number %></h4>
+              <h5><%= upo.company.name %></h5>
+              <p class="list-group-item-text"> Received: <%= upo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></p>
+            </a>
+          </div>
+        <% end %>
+        <%= will_paginate @unpaid_pos %>
+      </div>
+      <div class="col-md-6">
+        <% @paid_pos.each do |ppo| %>
+          <div class="list-group">
+            <a href="/purchase_orders/<%= ppo.id %>" class="list-group-item">
+              <h3 class="list-group-item-heading">#<%= ppo.po_number %></h3>
+              <h5><%= ppo.company.name %></h5>
+              <p class="list-group-item-text"> Received: <%= ppo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></p>
+            </a>
+          </div>
+        <% end %>
+        <%= will_paginate @paid_pos %>
+      </div>
+    </div>
+  </div>
+</div>

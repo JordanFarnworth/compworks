@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403232233) do
+ActiveRecord::Schema.define(version: 20160407031406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,13 +77,22 @@ ActiveRecord::Schema.define(version: 20160403232233) do
 
   add_index "login_sessions", ["user_id"], name: "index_login_sessions_on_user_id", using: :btree
 
+  create_table "purchase_order_vendors", force: :cascade do |t|
+    t.integer  "vendor_id"
+    t.integer  "purchase_order_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "purchase_order_vendors", ["purchase_order_id"], name: "index_purchase_order_vendors_on_purchase_order_id", using: :btree
+  add_index "purchase_order_vendors", ["vendor_id"], name: "index_purchase_order_vendors_on_vendor_id", using: :btree
+
   create_table "purchase_orders", force: :cascade do |t|
     t.integer  "po_number"
-    t.string   "vendor"
     t.integer  "company_id"
-    t.text     "items"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "payment"
   end
 
   add_index "purchase_orders", ["company_id"], name: "index_purchase_orders_on_company_id", using: :btree
@@ -118,5 +127,7 @@ ActiveRecord::Schema.define(version: 20160403232233) do
   end
 
   add_foreign_key "item_joiners", "items"
+  add_foreign_key "purchase_order_vendors", "purchase_orders"
+  add_foreign_key "purchase_order_vendors", "vendors"
   add_foreign_key "purchase_orders", "companies"
 end

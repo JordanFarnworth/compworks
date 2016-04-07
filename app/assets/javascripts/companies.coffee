@@ -159,7 +159,7 @@ createServiceLog = ->
         company_id: company
     success: (data) ->
       bootbox.alert 'Service Log Created', ->
-        window.location = window.location
+        location.reload()
 
 createInventoryItem = ->
   company = window.location.pathname.match(/\/companies\/(\d+)/)[1]
@@ -178,7 +178,7 @@ createInventoryItem = ->
           log_me_in: $('#logmein-checkbox').prop('checked')
     success: (data) ->
       bootbox.alert 'Inventory Item Created', ->
-        window.location = window.location
+        location.reload()
 
 #load Company Data functions
 loadCompanyData = ->

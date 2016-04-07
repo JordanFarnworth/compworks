@@ -25,6 +25,8 @@ Rails.application.routes.draw do
         get 'inventory_items' => 'companies#inventory_items'
         post 'inventory_items' => 'inventory_items#create'
       end
+      get 'item_search' => 'items#item_search'
+      get 'vendor_search' => 'vendors#vendor_search'
     end
   end
 end

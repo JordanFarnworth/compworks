@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>Create a PO</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form>
+          <div class="checkbox">
+             <label>
+               <input type="checkbox" id="received-input"> Received
+             </label>
+           </div>
+          <fieldset class="form-group">
+            <label for="vendor-input">Vendor</label>
+            <input class="form-control" id="vendor-input" placeholder="Start typing for vendor..">
+            <small class="text-muted">If the vendor does not exist, a new one will be created.</small>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="client-input">Client</label>
+            <input class="form-control" id="client-input" placeholder="Search for client">
+            <small class="text-muted">This should autocomplete for you</small>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="item-input">Items</label>
+            <input class="form-control" id="item-input" placeholder="Search for Item..">
+            <small class="text-muted">This should autocomplete for you. If the item doesn't exist, it will be saved for next time you create a PO.</small>
+          </fieldset>
+          <fieldset class="form-group">
+           <label for="InputFile">PO Image</label>
+           <input type="file" class="form-control-file" id="InputFile">
+           <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+         </fieldset>
+         <fieldset>
+           <button class="btn btn-default" type="button" id="po-submit">Create PO</button>
+         </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

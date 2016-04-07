@@ -8,14 +8,20 @@
       <div class="col-md-6">
         <div class="panel panel-primary">
           <div class="panel-heading text-center">
-            <h3 class="panel-title">Purchase Orders     <a href="#" id="add-po"><i class="fa fa-plus fa-3"></i></a>
+            <h3 class="panel-title">Purchase Orders     <a href="/purchase_orders/new" id="add-po"><i class="fa fa-plus fa-3"></i></a>
           </div>
           <div class="panel-body fixed-panel">
-            <% @pos.each do |ii| %>
-
+            <% @pos.each do |po| %>
+            <div class="list-group">
+              <a href="/purchase_orders/<%= po.id %>" class="list-group-item">
+                <h4 class="list-group-item-heading">#<%= po.po_number %></h4>
+                <p class="list-group-item-text"> Received: <%= po.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></p>
+              </a>
+            </div>
             <% end %>
           </div>
         </div>
+        <%= will_paginate @pos %>
       </div>
       <div class="col-md-6">
         <div class="panel panel-primary">
@@ -35,6 +41,7 @@
           </div>
         </div>
       </div>
+      <%= will_paginate @inventory_items %>
     </div>
     <div class="row">
       <div class="col-md-6">
@@ -54,6 +61,7 @@
             <% end %>
           </div>
         </div>
+        <%= will_paginate @service_logs %>
       </div>
       <div class="col-md-6">
         <div class="panel panel-primary">
@@ -69,75 +77,5 @@
   </div>
 </div>
 
-
-
-
-<!-- <div class="container">
-  <div class="row center" id="company-title">
-
-  </div>
-
-  <div role="tabpanel">
-
-    <div class="btn-group btn-group-justified" role="group">
-      <a href="#inventory_items" class="btn btn-primary" role=button data-toggle="tab">Inventory Items</a>
-      <a href="#company"class="btn btn-info" role=button data-toggle="tab">Company Info</a>
-      <a href="#service_logs"class="btn btn-primary" role=button data-toggle="tab">Service Logs</a>
-    </div>
-
-
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane" id="inventory_items">
-
-        <table class="table table-hover company-info-tables">
-          <thead>
-            <th>ID</th>
-            <th>Computer Name</th>
-            <th>Hard Drive</th>
-            <th>Operating System</th>
-            <th>Processor</th>
-            <th>Ram</th>
-            <th>Log-Me-In</th>
-            <th> </th>
-            <th> </th>
-          </thead>
-          <tbody id="inventory-data">
-
-          </tbody>
-        </table>
-      </div>
-
-      <div role="tabpanel" class="tab-pane" id="service_logs">
-        <div class="center edit-icon"><h2></h2></div>
-        <table class="table table-hover company-info-tables">
-          <thead>
-            <th>ID</th>
-            <th>Date</th>
-            <th>Length</th>
-            <th>Service Performed</th>
-            <th>Notes</th>
-            <th> </th>
-            <th> </th>
-          </thead>
-          <tbody id="service-log-data">
-
-
-          </tbody>
-        </table>
-      </div>
-
-      <div role="tabpanel" class="tab-pane active" id="company">
-        <div id="company-info">
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-  <%= render 'scriptstore' %>
-  <%= render 'companymodals' %>
-
-</div> -->
+<%= render 'companymodals' %>
+<%= render 'scriptstore' %>

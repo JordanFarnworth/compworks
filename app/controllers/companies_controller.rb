@@ -103,9 +103,9 @@ class CompaniesController < ApplicationController
 
   def find_company
     @company = Company.active.find params[:id] || params[:company_id]
-    @inventory_items = @company.inventory_items.active.paginate(page: params[:page], per_page: 10)
-    @service_logs = @company.service_logs.active.paginate(page: params[:page], per_page: 10)
-    @pos = @company.purchase_orders.paginate(page: params[:page], per_page: 10)
+    @inventory_items = @company.inventory_items.active.paginate(page: params[:page], per_page: 15)
+    @service_logs = @company.service_logs.active.paginate(page: params[:page], per_page: 15)
+    @pos = @company.purchase_orders.paginate(page: params[:page], per_page: 15)
   end
 
   def find_companies

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     scope :v1 do
       get 'undelete' => 'companies#deleted'
       resources :users, except: [:new, :edit]
+      resources :purchase_orders, except: [:new, :edit]
       resources :inventory_items, only: [:update, :destroy]
       resources :service_logs, only: [:update, :destroy]
       resources :companies, except: [:new, :edit] do

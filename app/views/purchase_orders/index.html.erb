@@ -2,25 +2,41 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
+        <div class="row-fluid text-center">
+          <h2>Unreceived Purchase Order</h2>
+        </div>
         <% @unpaid_pos.each do |upo| %>
           <div class="list-group">
-            <a href="/purchase_orders/<%= upo.id %>" class="list-group-item">
-              <h4 class="list-group-item-heading">#<%= upo.po_number %></h4>
-              <h5><%= upo.company.name %></h5>
-              <p class="list-group-item-text"> Received: <%= upo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></p>
-            </a>
+            <div class="list-group-item" data-id="<%= upo.id %>">
+              <h3 class="list-group-item-heading">
+                #<%= link_to upo.po_number, upo %>
+                <span class="pull-right"><button class="btn btn-primary" type="button" name="button">Mark as received</button></span>
+              </h3>
+              <h5 class="list-group-item-text"> Received: <%= upo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
+              <h5>Client: <%= upo.company.name %>
+                <span class="pull-right">Item: <%= upo.items.first.name %></span>
+              </h5>
+            </div>
           </div>
         <% end %>
         <%= will_paginate @unpaid_pos %>
       </div>
       <div class="col-md-6">
+        <div class="row-fluid text-center">
+          <h2>Received Purchase Order</h2>
+        </div>
         <% @paid_pos.each do |ppo| %>
           <div class="list-group">
-            <a href="/purchase_orders/<%= ppo.id %>" class="list-group-item">
-              <h3 class="list-group-item-heading">#<%= ppo.po_number %></h3>
-              <h5><%= ppo.company.name %></h5>
-              <p class="list-group-item-text"> Received: <%= ppo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></p>
-            </a>
+            <div class="list-group-item" data-id="<%= ppo.id %>">
+              <h3 class="list-group-item-heading">
+                #<%= link_to ppo.po_number, ppo %>
+                <span class="pull-right"><button class="btn btn-warning" type="button" name="button">Mark as unreceived</button></span>
+              </h3>
+              <h5 class="list-group-item-text"> Received: <%= ppo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
+              <h5>Client: <%= ppo.company.name %>
+                <span class="pull-right">Item: <%= ppo.items.first.name %></span>
+              </h5>
+            </div>
           </div>
         <% end %>
         <%= will_paginate @paid_pos %>

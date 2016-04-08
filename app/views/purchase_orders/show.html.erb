@@ -1,8 +1,19 @@
 <div class="container-fluid">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-
+      <div class="col-md-6 text-center">
+        <h1 style="color:green">#<%= @po.po_number %></h1>
+        <br>
+        <h2>Company: <%= @po.company.name %></h2>
+        <br>
+        <h3>Item: <%= @po.items.first.name %></h3>
+        <br>
+        <h3>Vendor: <%= @po.vendors.first.name %></h3>
+        <h3>Received Item: <%= @po.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h3>
+        <div class="buttons">
+          <button class="btn btn-warning" id="delete-purchase-order" type="button" name="button">Delete</button>
+          <a href="/purchase_orders/<%= @po.id %>/edit" class="btn btn-primary">Update</a>
+        </div>
       </div>
       <div class="col-md-6">
         <%= image_tag @po.image.url(:large) %>

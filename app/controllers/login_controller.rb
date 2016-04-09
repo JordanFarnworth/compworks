@@ -22,7 +22,7 @@ class LoginController < ApplicationController
       }
       flash.clear
       flash[:success] = "#{user.name} has been logged in"
-      redirect_to :companies
+      redirect_to :admin_dashboard
     end
   end
 

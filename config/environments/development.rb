@@ -1,8 +1,5 @@
 Rails.application.configure do
-  ENV['AWS_BUCKET'] = 'compworks/dev'
-  ENV['AWS_ACCESS_KEY_ID'] = 'AKIAIU22GJVEIOD67XLQ'
-  ENV['AWS_SECRET_ACCESS_KEY'] = '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'
-  ENV['AWS_REGION'] = 'us-west-1'
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

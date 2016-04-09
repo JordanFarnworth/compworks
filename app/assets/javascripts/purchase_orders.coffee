@@ -22,6 +22,35 @@ $('.purchase_orders.show').ready ->
   $('#delete-purchase-order').on 'click', ->
     deletePo()
 
+$('.purchase_orders.index').ready ->
+  bindPoButtons()
+
+bindPoButtons = ->
+  $('.mark-received').on 'click', ->
+    markPoAsRecieved($(this).attr('data-id'))
+  $('.mark-unreceived').on 'click', ->
+    markPoAsUnRecieved($(this).attr('data-id'))
+
+markPoAsRecieved = (poId) ->
+  $.ajax "/api/v1/mark_po_as_received",
+    type: 'post',
+    dataType: 'json',
+    data:
+      id: poId
+    success: (data) ->
+      bootbox.alert "PO \##{data.po_number} was markd as received", ->
+        location.reload()
+
+markPoAsUnRecieved = (poId) ->
+  $.ajax "/api/v1/mark_po_as_unreceived",
+    type: 'post',
+    dataType: 'json',
+    data:
+      id: poId
+    success: (data) ->
+      bootbox.alert "PO \##{data.po_number} was markd as unreceived", ->
+        location.reload()
+
 loadPoParams = ->
   po = window.location.pathname.match(/\/purchase_orders\/(\d+)/)[1]
   $.ajax "/api/v1/purchase_orders/#{po}",
@@ -117,7 +146,6 @@ autocompleteCompanyNameParams = ->
       name = ui.item.obj.name
       $(@).val(name)
       $(@).attr('data-id', id)
-      console.log this
   }
 
 autocompleteVendorParams = ->
@@ -139,7 +167,6 @@ autocompleteVendorParams = ->
       name = ui.item.name
       $(@).val(name)
       $(@).attr('data-id', id)
-      console.log this
   }
 
 autocompleteItemParams = ->
@@ -161,5 +188,4 @@ autocompleteItemParams = ->
       name = ui.item.name
       $(@).val(name)
       $(@).attr('data-id', id)
-      console.log this
   }

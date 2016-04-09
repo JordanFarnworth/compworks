@@ -5,3 +5,6 @@
 
 $('.dashboard.index').ready ->
   console.log 'hello world'
+
+$('.dashboard.admin_dashboard').ready ->
+  console.log 'admin dash'

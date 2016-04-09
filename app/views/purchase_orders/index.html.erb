@@ -10,7 +10,7 @@
             <div class="list-group-item" data-id="<%= upo.id %>">
               <h3 class="list-group-item-heading">
                 #<%= link_to upo.po_number, upo %>
-                <span class="pull-right"><button class="btn btn-primary" type="button" name="button">Mark as received</button></span>
+                <span class="pull-right"><button data-id="<%= upo.id %>" class="btn btn-primary mark-received" type="button" name="button">Mark as received</button></span>
               </h3>
               <h5 class="list-group-item-text"> Received: <%= upo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
               <h5>Client: <%= upo.company.name %>
@@ -30,7 +30,7 @@
             <div class="list-group-item" data-id="<%= ppo.id %>">
               <h3 class="list-group-item-heading">
                 #<%= link_to ppo.po_number, ppo %>
-                <span class="pull-right"><button class="btn btn-warning" type="button" name="button">Mark as unreceived</button></span>
+                <span class="pull-right"><button data-id="<%= ppo.id %>" class="btn btn-warning mark-unreceived" type="button" name="button">Mark as unreceived</button></span>
               </h3>
               <h5 class="list-group-item-text"> Received: <%= ppo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
               <h5>Client: <%= ppo.company.name %>

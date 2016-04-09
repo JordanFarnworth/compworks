@@ -16,6 +16,10 @@ class ServiceLogsController < ApplicationController
     end
   end
 
+  def index
+    @service_logs = ServiceLog.all
+  end
+
   def create
     @service_log ||= ServiceLog.new service_log_params
     respond_to do |format|
@@ -41,6 +45,6 @@ class ServiceLogsController < ApplicationController
 
   private
   def service_log_params
-    params.require(:service_log).permit(:date, :length, :service_preformed, :notes, :company_id, :state)
+    params.require(:service_log).permit(:date, :length, :service_preformed, :notes, :company_id, :state, :payment)
   end
 end

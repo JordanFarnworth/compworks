@@ -35,6 +35,28 @@ class PurchaseOrdersController < ApplicationController
     end
   end
 
+  def make_po_received
+    @po = PurchaseOrder.find params[:id]
+    respond_to do |format|
+      format.json do
+        @po.payment = true
+        @po.save
+        render json: purchase_order_json(@po), status: :ok
+      end
+    end
+  end
+
+  def make_po_unreceived
+    @po = PurchaseOrder.find params[:id]
+    respond_to do |format|
+      format.json do
+        @po.payment = false
+        @po.save
+        render json: purchase_order_json(@po), status: :ok
+      end
+    end
+  end
+
   def create
     po_params = purchase_order_params.tap {|at| at.delete("item")}
     po_params = po_params.tap {|at| at.delete("vendor")}

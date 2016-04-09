@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center">
+        <h1>Welcome, <%= @current_user.name %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <br>
+        <br> 
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-3">
+        <a href="/purchase_orders/new">
+          <i class="fa fa-shopping-cart fa-5x"></i>
+          <h2>New Purchase Order</h2>
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="/service_logs/new">
+          <i class="fa fa-briefcase fa-5x"></i>
+          <h2>New Service Log</h2>
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="/companies/new">
+          <i class="fa fa-user-plus fa-5x"></i>
+          <h2>New Client</h2>
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="/companies">
+          <i class="fa fa-building fa-5x"></i>
+          <h2>View All Clients</h2>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

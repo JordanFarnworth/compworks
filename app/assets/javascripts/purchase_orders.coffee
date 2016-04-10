@@ -72,6 +72,7 @@ populateForm = (data) ->
   $('#current-image').append("<img src=\"#{data.image}\" />")
 
 createNewPo = ->
+  resizeIfMobile()
   data = buildRequestData()
   $('.row').addClass('text-center')
   $('#loading-space').html(loadingHtml())
@@ -85,6 +86,18 @@ createNewPo = ->
       $('#loading-space').html(doneLoadingHtml())
       bootbox.alert "Purchase Order ##{data.po_number} was created", ->
         window.location = "/purchase_orders/#{data.id}"
+
+resizeIfMobile = ->
+  if navigator.userAgent.match(/iPhone/i) or navigator.userAgent.match(/iPad/i)
+    viewportmeta = document.querySelector('meta[name="viewport"]')
+  if viewportmeta
+    viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0'
+    document.body.addEventListener 'gesturestart', (->
+      viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6'
+      return
+    ), false
+
+
 
 loadingHtml = ->
   "

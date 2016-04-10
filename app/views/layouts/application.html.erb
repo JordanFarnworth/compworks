@@ -31,7 +31,9 @@
             <li style="background-color:#2C3E50"><a href="/admin_dashboard">Admin Dashboard</a></li>
             <li style="background-color:#2C3E50"><%= link_to 'Logout', login_path, method: :delete %></li>
           </ul>
+        </div>
         <% else %>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav pull-right">
             <li style="background-color:#2C3E50"><%= link_to 'Login', login_path %></li>
           </ul>

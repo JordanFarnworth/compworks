@@ -8,6 +8,11 @@
   margin: 0 auto;
 }
 
+.img-sliders{
+  background-size: cover;
+  -webkit-background-origin:border;
+}
+
 #section-1 {
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eab92d+0,c79810+100;Yellow+3D+%232 */
 background: #eab92d; /* Old browsers */
@@ -15,17 +20,21 @@ background: -moz-linear-gradient(top,  #eab92d 0%, #c79810 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  #eab92d 0%,#c79810 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  #eab92d 0%,#c79810 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eab92d', endColorstr='#c79810',GradientType=0 ); /* IE6-9 */
-height: 400px;
+max-height: 800px;
+min-height: 400px;
+
 }
 
 #section-2 {
 background: white;
-height: 400px;
+max-height: 800px;
+min-height: 400px;
 }
 
 #section-3 {
 background: #F9F9FD;
-height: 400px;
+max-height: 800px;
+min-height: 400px;
 }
 
 #section-4 {
@@ -34,10 +43,80 @@ background: -moz-linear-gradient(top,  #45779D 0%, #184E77 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  #45779D 0%,#184E77 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  #45779D 0%,#184E77 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45779D', endColorstr='#184E77',GradientType=0 ); /* IE6-9 */
-height: 400px;
+max-height: 800px;
+min-height: 400px;
 }
 
 
 .navbar {
+  margin-bottom: 0px !important;
   height: 70px;
+  border-radius: 0 !important;
+}
+
+.homepage-hero-module {
+  border-right: none;
+  border-left: none;
+  position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+  display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+  display: block !important;
+}
+.video-container {
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+.video-container .poster img {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+}
+.video-container .filter {
+  z-index: 100;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+.video-container .title-container {
+  z-index: 1000;
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+.video-container .description .inner {
+  font-size: 1em;
+  width: 45%;
+  margin: 0 auto;
+}
+.video-container .link {
+  position: absolute;
+  bottom: 3em;
+  width: 100%;
+  text-align: center;
+  z-index: 1001;
+  font-size: 2em;
+  color: #fff;
+}
+.video-container .link a {
+  color: #fff;
+}
+.video-container video {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+}
+.video-container video.fillWidth {
+  width: 100%;
 }

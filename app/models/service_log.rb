@@ -3,6 +3,8 @@ class ServiceLog < ActiveRecord::Base
 
   scope :active, -> {where(state: :active)}
   scope :deleted, -> {where(state: :deleted)}
+  scope :paid, -> {where(payment: true)}
+  scope :unpaid, -> {where(payment: false)}
 
   validates :date, presence: true
 

@@ -1,40 +1,45 @@
-<div class="container-fluid">
-  <div class="containter">
-    <div class="row">
-      <div class="col-md-12 text-center" id="section-2">
-          <%= image_tag("compworks-2.png", size: "800x350") %>
-      </div>
+<div class="homepage-hero-module">
+    <div class="video-container">
+        <div class="title-container">
+          <div class="headline">
+            <%= image_tag("compworks-2.png", class: "img-responsive") %>
+          </div>
+        </div>
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+            <source src="/assets/test.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.</video>
+        <div class="poster hidden">
+            <img src="http://www.videojs.com/img/poster.jpg" alt="">
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="container-fluid" id="section-1">
   <div class="container">
     <div class="row">
       <div class="col-md-6 text-center">
-        <h2>Technically proficient</h2>
-        <br>
-        <br>
-        <i class="fa fa-desktop fa-5x"></i>
-        <br>
-        <br>
-        <h4>
+        <h2 style="color:#184E77">Technically proficient</h2>
+          <br>
+          <br>
+        <i style="color:#184E77" class="fa fa-desktop fa-5x"></i>
+          <br>
+          <br>
+        <h4 style="color:#184E77">
           For twelve years, compworks has worked hard to give our customters
           best technical expirience for your business. We treat our clients like close friends,
           and we are confident you will notice the difference right away.
         </h4>
       </div>
       <div class="col-md-6 text-center">
-        <h2>Reliabillity that you need</h2>
-        <br>
-        <br>
-        <i class="fa fa-phone fa-5x"></i>
-        <br>
-        <br>
-        <h4>
+        <h2 style="color:#184E77">Reliabillity that you need</h2>
+          <br>
+          <br>
+        <i style="color:#184E77" class="fa fa-server fa-5x"></i>
+          <br>
+          <br>
+        <h4 style="color:#184E77">
           Compworks is known for reliabillity accross the entire state of Utah, we provide the
           personal touch of a small company, while consistantly giving the top technical advice available.
-
         </h4>
       </div>
     </div>
@@ -61,13 +66,62 @@
   <div class="containter">
     <div class="row">
       <div class="col-md-4 text-center">
-        <h2 style="color:white">Call us anytime</h2>
+        <i style="color:#eab92d" class="fa fa-mobile fa-5x"></i>
+          <br>
+        <h4 style="color:#eab92d">Please feel free to contact us using whatever is easiest for you. Note: For an immediate response text David at 801-755-1442. We look forward to talking with you.</h4>
       </div>
       <div class="col-md-4 text-center">
-        <h2 style="color:white">Send us an email</h2>
+        <i style="color:#eab92d" class="fa fa-envelope fa-5x"></i>
+          <br>
+        <h4 style="color:#eab92d">Mailing Address: 857 W. Alan Point Draper, UT 84020</h4>
+        <h4 style="color:#eab92d">Web: www.compworkspc.com Office</h4>
+        <h4 style="color:#eab92d">Phone: 801-999-4926</h4>
+        <h4 style="color:#eab92d">Office Fax: 801-401-7321</h4>
+        <h4 style="color:#eab92d">Lisa Contact Info: (Accounting Issues) 801-815-5411 lisa@compworkspc.com</h4>
+        <h4 style="color:#eab92d">David Farnworth Info: (Scheduling / Tech Support) 801-755-1442</h4>
       </div>
       <div class="col-md-4 text-center">
-        <h2 style="color:white"qu>LogMeIn for Remote Help</h2>
+        <i style="color:#eab92d"class="fa fa-sign-in fa-5x"></i>
+          <br>
+        <h4 style="color:#eab92d">Compworks installs remote control software on all computers, so we are able to offer direct assistance no matter how far away the computer is.</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" id="section-2">
+  <div class="container">
+    <div class="row">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active img-sliders">
+            <%= image_tag "cworks-office-1.jpg", size: "800x400" %>
+          </div>
+          <div class="item img-sliders">
+            <%= image_tag "cworks-office-2.jpg", size: "800x400" %>
+          </div>
+          <div class="item img-sliders">
+            <%= image_tag "cworks-office-3.jpg", size: "800x400" %>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
   </div>

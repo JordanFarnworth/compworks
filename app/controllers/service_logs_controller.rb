@@ -17,7 +17,8 @@ class ServiceLogsController < ApplicationController
   end
 
   def index
-    @service_logs = ServiceLog.all
+    @paid_service_logs = ServiceLog.paid.paginate(page: params[:page], per_page: 15)
+    @unpaid_service_logs = ServiceLog.unpaid.paginate(page: params[:page], per_page: 15)
   end
 
   def create

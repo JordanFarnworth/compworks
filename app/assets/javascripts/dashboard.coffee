@@ -4,6 +4,7 @@
 
 
 $('.dashboard.index').ready ->
+  $('.navbar-brand').hide()
   checkForMobile()
 
 checkForMobile = ->

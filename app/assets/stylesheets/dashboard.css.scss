@@ -32,9 +32,14 @@ min-height: 400px;
 }
 
 #section-5 {
-background: white;
+background-image:image-url("mobile-background.jpg");
 max-height: 800px;
 min-height: 400px;
+background: no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
 }
 
 #section-3 {

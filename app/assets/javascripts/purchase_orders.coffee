@@ -72,15 +72,33 @@ populateForm = (data) ->
   $('#current-image').append("<img src=\"#{data.image}\" />")
 
 createNewPo = ->
+  data = buildRequestData()
+  $('.row').addClass('text-center')
+  $('#loading-space').html(loadingHtml())
   $.ajax '/purchase_orders',
     type: 'post',
     dataType: 'json',
     contentType: false,
     processData: false,
-    data: buildRequestData()
+    data: data
     success: (data) ->
+      $('#loading-space').html(doneLoadingHtml())
       bootbox.alert "Purchase Order ##{data.po_number} was created", ->
         window.location = "/purchase_orders/#{data.id}"
+
+loadingHtml = ->
+  "
+  <div class=\"col-md-12\">
+    <i class=\"fa fa-spinner fa-pulse fa-5x\"></i>
+  </div>
+  "
+
+doneLoadingHtml = ->
+  "
+  <div class=\"col-md-12\">
+    <i style=\"color:green\" class=\"fa fa-check fa-5x\"></i>
+  </div>
+  "
 
 updatePo = ->
   po = window.location.pathname.match(/\/purchase_orders\/(\d+)/)[1]

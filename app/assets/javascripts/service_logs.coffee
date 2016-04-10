@@ -2,6 +2,20 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+loadingHtml = ->
+  "
+  <div class=\"col-md-12\">
+    <i class=\"fa fa-spinner fa-pulse fa-5x\"></i>
+  </div>
+  "
+
+doneLoadingHtml = ->
+  "
+  <div class=\"col-md-12\">
+    <i style=\"color:green\" class=\"fa fa-check fa-5x\"></i>
+  </div>
+  "
+
 $('.service_logs.new').ready ->
   date = new Date
   $('#client-input').autocomplete autocompleteCompanyNameParams()
@@ -77,18 +91,17 @@ getServiceLog = ->
 
 
 submitServiceLog = ->
+  data = buildSlRequestData()
+  $('.row').addClass('text-center')
+  $('#loading-space').html(loadingHtml())
   $.ajax "/api/v1/service_logs",
-    type: "post"
-    dataType: "json"
-    data:
-      service_log:
-        payment: $('#received-payment-edit').prop('checked')
-        date: $('#date-input-edit').val()
-        length: $('#length-input-edit').val()
-        service_preformed: $('#sp-input-edit').val()
-        notes: $('#notes-input-edit').val()
-        company_id: $('#client-input-edit').attr('data-id')
+    type: "post",
+    dataType: "json",
+    contentType: false,
+    processData: false,
+    data: data
     success: (data) ->
+      $('#loading-space').html(doneLoadingHtml())
       bootbox.alert "Service Log Created", ->
         window.location = "/service_logs"
 
@@ -102,9 +115,21 @@ buildSlUpdateRequestData = ->
   if $('#received-payment-edit').prop('checked') then formData.append 'service_log[payment]', true else formData.append 'service_log[payment]', false
   formData
 
+buildSlRequestData = ->
+  formData = new FormData()
+  formData.append 'service_log[date]', $('#date-input').val()
+  formData.append 'service_log[length]', $('#length-input').val()
+  formData.append 'service_log[service_preformed]', $('#sp-input').val()
+  formData.append 'service_log[notes]', $('#notes-input').val()
+  formData.append 'service_log[company_id]', $('#client-input').attr('data-id')
+  if $('#received-payment').prop('checked') then formData.append 'service_log[payment]', true else formData.append 'service_log[payment]', false
+  formData
+
 updateServiceLog = () ->
   id = window.location.pathname.match(/\/service_logs\/(\d+)/)[1]
   data = buildSlUpdateRequestData()
+  $('.row').addClass('text-center')
+  $('#loading-space').html(loadingHtml())
   $.ajax "/api/v1/service_logs/#{id}",
     type: "put",
     dataType: "json",
@@ -112,6 +137,7 @@ updateServiceLog = () ->
     processData: false,
     data: data
     success: (data) ->
+      $('#loading-space').html(doneLoadingHtml())
       bootbox.alert "Service Log Updated", ->
         window.location = "/service_logs"
 

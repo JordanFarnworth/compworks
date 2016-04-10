@@ -61,10 +61,7 @@ loadPoParams = ->
 
 populateForm = (data) ->
   $('#po-number-edit').append("<h1>\##{data.po_number}</h1>")
-  if data.payment
-    $('#received-input-edit').prop('checked', true)
-  else
-  $('#received-input-edit').prop('checked', false)
+  if data.payment then $('#received-input-edit').prop('checked', true) else $('#received-input-edit').prop('checked', false)
   $('#client-input-edit').val(data.company.name)
   $('#client-input-edit').attr('data-id', data.company.id)
   $('#vendor-input-edit').val(data.vendor[0].name)
@@ -72,7 +69,6 @@ populateForm = (data) ->
   $('#current-image').append("<img src=\"#{data.image}\" />")
 
 createNewPo = ->
-  resizeIfMobile()
   data = buildRequestData()
   $('.row').addClass('text-center')
   $('#loading-space').html(loadingHtml())
@@ -86,18 +82,6 @@ createNewPo = ->
       $('#loading-space').html(doneLoadingHtml())
       bootbox.alert "Purchase Order ##{data.po_number} was created", ->
         window.location = "/purchase_orders/#{data.id}"
-
-resizeIfMobile = ->
-  if navigator.userAgent.match(/iPhone/i) or navigator.userAgent.match(/iPad/i)
-    viewportmeta = document.querySelector('meta[name="viewport"]')
-  if viewportmeta
-    viewportmeta.content = 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0'
-    document.body.addEventListener 'gesturestart', (->
-      viewportmeta.content = 'width=device-width, minimum-scale=0.25, maximum-scale=1.6'
-      return
-    ), false
-
-
 
 loadingHtml = ->
   "
@@ -115,13 +99,17 @@ doneLoadingHtml = ->
 
 updatePo = ->
   po = window.location.pathname.match(/\/purchase_orders\/(\d+)/)[1]
+  data = buildUpdateRequestData()
+  $('.row').addClass('text-center')
+  $('#loading-space').html(loadingHtml())
   $.ajax "/purchase_orders/#{po}",
     type: 'put',
     dataType: 'json',
     contentType: false,
     processData: false,
-    data: buildUpdateRequestData()
+    data: data
     success: (data) ->
+      $('#loading-space').html(doneLoadingHtml())
       bootbox.alert "Purchase Order ##{data.po_number} was updated", ->
         window.location = "/purchase_orders/#{data.id}"
 

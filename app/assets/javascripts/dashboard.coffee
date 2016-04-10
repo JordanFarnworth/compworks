@@ -5,23 +5,23 @@
 
 $('.dashboard.index').ready ->
   checkForMobile()
-  scaleVideoContainer()
-  initBannerVideoSize '.video-container .poster img'
-  initBannerVideoSize '.video-container .filter'
-  initBannerVideoSize '.video-container video'
-  $(window).on 'resize', ->
-    scaleVideoContainer()
-    scaleBannerVideoSize '.video-container .poster img'
-    scaleBannerVideoSize '.video-container .filter'
-    scaleBannerVideoSize '.video-container video'
-    return
-  return
 
 checkForMobile = ->
   if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
-    alert('mobile')
+    $('.homepage-hero-module').remove()
+    $('.container-fluid.hidden').removeClass('hidden')
   else
-    alert('not')
+    scaleVideoContainer()
+    initBannerVideoSize '.video-container .poster img'
+    initBannerVideoSize '.video-container .filter'
+    initBannerVideoSize '.video-container video'
+    $(window).on 'resize', ->
+      scaleVideoContainer()
+      scaleBannerVideoSize '.video-container .poster img'
+      scaleBannerVideoSize '.video-container .filter'
+      scaleBannerVideoSize '.video-container video'
+      return
+    return
 
 scaleVideoContainer = ->
   height = $(window).height()

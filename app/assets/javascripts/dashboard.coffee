@@ -4,6 +4,7 @@
 
 
 $('.dashboard.index').ready ->
+  checkForMobile()
   scaleVideoContainer()
   initBannerVideoSize '.video-container .poster img'
   initBannerVideoSize '.video-container .filter'
@@ -15,6 +16,12 @@ $('.dashboard.index').ready ->
     scaleBannerVideoSize '.video-container video'
     return
   return
+
+checkForMobile = ->
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    alert('mobile')
+  else
+    alert('not')
 
 scaleVideoContainer = ->
   height = $(window).height()

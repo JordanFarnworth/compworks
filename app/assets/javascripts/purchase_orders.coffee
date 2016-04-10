@@ -147,6 +147,8 @@ buildRequestData = ->
 
 autocompleteCompanyNameParams = ->
   {
+    open: (event, ui) ->
+      $('.ui-autocomplete').off('menufocus hover mouseover mouseenter')
     source:(request, response) ->
       $.ajax
         url: "/api/v1/companies",
@@ -168,6 +170,8 @@ autocompleteCompanyNameParams = ->
 
 autocompleteVendorParams = ->
   {
+    open: (event, ui) ->
+      $('.ui-autocomplete').off('menufocus hover mouseover mouseenter')
     source:(request, response) ->
       $.ajax
         url: "/api/v1/vendor_search",
@@ -189,6 +193,8 @@ autocompleteVendorParams = ->
 
 autocompleteItemParams = ->
   {
+    open: (event, ui) ->
+      $('.ui-autocomplete').off('menufocus hover mouseover mouseenter')
     source:(request, response) ->
       $.ajax
         url: "/api/v1/item_search",

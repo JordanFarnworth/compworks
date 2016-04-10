@@ -8,7 +8,6 @@ class ServiceLogsController < ApplicationController
   end
 
   def update
-    debugger
     respond_to do |format|
       format.json do
         if @service_log.update service_log_params
@@ -22,7 +21,7 @@ class ServiceLogsController < ApplicationController
     @sl = ServiceLog.find params[:id]
     respond_to do |format|
       format.html do
-        
+
       end
       format.json do
         render json: service_log_json(@sl), status: :ok
@@ -31,8 +30,28 @@ class ServiceLogsController < ApplicationController
   end
 
   def index
-    @paid_service_logs = ServiceLog.paid.includes(:company).paginate(page: params[:page], per_page: 15)
-    @unpaid_service_logs = ServiceLog.unpaid.includes(:company).paginate(page: params[:page], per_page: 15)
+    @paid_service_logs = ServiceLog.paid.active.includes(:company).paginate(page: params[:page], per_page: 15)
+    @unpaid_service_logs = ServiceLog.unpaid.active.includes(:company).paginate(page: params[:page], per_page: 15)
+  end
+
+  def mark_as_paid
+    @sl = ServiceLog.find params[:id]
+    @sl.mark_as_paid!
+    respond_to do |format|
+      format.json do
+        render json: service_log_json(@sl), status: :ok
+      end
+    end
+  end
+
+  def mark_as_unpaid
+    @sl = ServiceLog.find params[:id]
+    @sl.mark_as_unpaid!
+    respond_to do |format|
+      format.json do
+        render json: service_log_json(@sl), status: :ok
+      end
+    end
   end
 
   def create
@@ -52,7 +71,7 @@ class ServiceLogsController < ApplicationController
     @service_log.destroy
     respond_to do |format|
       format.json do
-        render nothing: true, status: :no_content
+        render json: {success: "Service Log deleted"}, status: :ok
       end
     end
   end

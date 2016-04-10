@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       get 'vendor_search' => 'vendors#vendor_search'
       post 'mark_po_as_received' => 'purchase_orders#make_po_received'
       post 'mark_po_as_unreceived' => 'purchase_orders#make_po_unreceived'
+      post 'service_logs/mark_unpaid' => 'service_logs#mark_as_unpaid'
+      post 'service_logs/mark_paid' => 'service_logs#mark_as_paid'
     end
   end
 end

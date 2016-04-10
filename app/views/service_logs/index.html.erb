@@ -10,7 +10,7 @@
             <div class="list-group-item" data-id="<%= upsl.id %>">
               <h3 class="list-group-item-heading">
                 <%= link_to upsl.date.to_time.strftime('%B %e, %Y'), upsl %>
-                <span class="pull-right"><button data-id="<%= upsl.id %>" class="btn btn-primary mark-received" type="button" name="button">Mark as paid</button></span>
+                <span class="pull-right"><button data-id="<%= upsl.id %>" class="btn btn-primary mark-paid" type="button" name="button">Mark as paid</button></span>
               </h3>
               <h5>Client: <%= upsl.company.name %></h5>
               <p>
@@ -31,7 +31,7 @@
             <div class="list-group-item" data-id="<%= psl.id %>">
               <h3 class="list-group-item-heading">
                 <%= link_to psl.date.to_time.strftime('%B %e, %Y'), psl %>
-                <span class="pull-right"><button data-id="<%= psl.id %>" class="btn btn-warning mark-unreceived" type="button" name="button">Mark as unpaid</button></span>
+                <span class="pull-right"><button data-id="<%= psl.id %>" class="btn btn-warning mark-unpaid" type="button" name="button">Mark as unpaid</button></span>
               </h3>
               <h5>Client: <%= psl.company.name %></h5>
               <p>

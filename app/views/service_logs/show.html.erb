@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center" id="po-title">
+        <h1>Service Log <%= @sl.id %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form>
+          <div class="checkbox">
+             <label>
+               <input type="checkbox" id="received-payment-edit"> Paid?
+             </label>
+           </div>
+          <fieldset class="form-group">
+            <label for="vendor-input">Length Of Service</label>
+            <input class="form-control" id="length-input-edit" placeholder="4 hours..">
+            <small class="text-muted">Example 4 hours, 30 minutes</small>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="vendor-input">Date of service</label>
+            <input class="form-control" id="date-input-edit">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="client-input">Service Performed</label>
+            <input class="form-control" id="sp-input-edit" placeholder="Changed out 2 computers..">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="item-input">Notes about visit</label>
+            <textarea rows="3" class="form-control" id="notes-input-edit" placeholder="Extra Notes about the visit.."></textarea>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="item-input">Company/Client for Service Log</label>
+            <input data-id="<%= @sl.company.id %>" class="form-control" id="client-input-edit" placeholder="Childrens Dental..">
+            <small>This field should auto populate. Search by doctor or company name.</small>
+          </fieldset>
+         <fieldset>
+           <button class="btn btn-default" type="button" id="sl-edit">Update Service Log</button>
+           <button class="btn btn-warning" type="button" id="sl-delete">Delete Service Log</button>
+         </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

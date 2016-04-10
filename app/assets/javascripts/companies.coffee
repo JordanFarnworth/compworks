@@ -341,24 +341,6 @@ updateInventoryItem = (id) ->
       loadInventoryData()
       bootbox.alert "Inventory Item ##{data.id} updated"
 
-updateServiceLog = (id) ->
-  $.ajax "/api/v1/service_logs/#{id}",
-    type: "put"
-    dataType: "json"
-    data:
-      service_log:
-        date: $('#edit-input-date').val()
-        length: $('#edit-length').val()
-        service_preformed: $('#edit-sp-text-area').val()
-        notes: $('#edit-notes-text-area').val()
-    success: (data) ->
-      clearEditServiceLogModal()
-      $('#date-warning-here').removeClass("has-error")
-      $('#date-warning-label').text("Date")
-      $('#edit-service-log-modal').modal('hide')
-      loadServiceLogData()
-      bootbox.alert "Service Log ##{data.id} updated"
-
 # #delete SL && II functions
 
 deleteInventoryItem = (inventory_item) ->

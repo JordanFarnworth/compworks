@@ -2,9 +2,11 @@ module Api::V1::ServiceLog
   include Api::V1::Json
 
   def service_log_json(service_log, includes = {})
-    attributes = %w(id company_id date length service_preformed notes state)
+    attributes = %w(id company_id date length service_preformed notes state payment)
 
-    api_json(service_log, only: attributes)
+    api_json(service_log, only: attributes).tap do |hash|
+      hash['company'] = service_log.company.name
+    end
   end
 
 

@@ -1,4 +1,5 @@
 class ServiceLogsController < ApplicationController
+  include Api::V1::ServiceLog
 
   before_action :find_service_log, only: [:show, :update, :destroy]
 
@@ -7,6 +8,7 @@ class ServiceLogsController < ApplicationController
   end
 
   def update
+    debugger
     respond_to do |format|
       format.json do
         if @service_log.update service_log_params
@@ -16,9 +18,21 @@ class ServiceLogsController < ApplicationController
     end
   end
 
+  def show
+    @sl = ServiceLog.find params[:id]
+    respond_to do |format|
+      format.html do
+        
+      end
+      format.json do
+        render json: service_log_json(@sl), status: :ok
+      end
+    end
+  end
+
   def index
-    @paid_service_logs = ServiceLog.paid.paginate(page: params[:page], per_page: 15)
-    @unpaid_service_logs = ServiceLog.unpaid.paginate(page: params[:page], per_page: 15)
+    @paid_service_logs = ServiceLog.paid.includes(:company).paginate(page: params[:page], per_page: 15)
+    @unpaid_service_logs = ServiceLog.unpaid.includes(:company).paginate(page: params[:page], per_page: 15)
   end
 
   def create

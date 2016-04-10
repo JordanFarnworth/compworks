@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       resources :users, except: [:new, :edit]
       resources :purchase_orders, except: [:new, :edit]
       resources :inventory_items, only: [:update, :destroy]
-      resources :service_logs, only: [:update, :destroy, :create]
+      resources :service_logs, only: [:update, :destroy, :create, :show]
       resources :companies, except: [:new, :edit] do
         put 'undelete' => 'companies#undelete'
         get 'service_logs' => 'companies#service_logs'

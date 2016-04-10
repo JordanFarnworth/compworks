@@ -64,7 +64,7 @@ populateForm = (data) ->
   if data.payment
     $('#received-input-edit').prop('checked', true)
   else
-    $('#received-input-edit').prop('checked', false)
+  $('#received-input-edit').prop('checked', false)
   $('#client-input-edit').val(data.company.name)
   $('#client-input-edit').attr('data-id', data.company.id)
   $('#vendor-input-edit').val(data.vendor[0].name)

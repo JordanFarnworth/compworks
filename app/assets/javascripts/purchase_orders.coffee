@@ -25,6 +25,8 @@ $('.purchase_orders.edit').ready ->
 $('.purchase_orders.show').ready ->
   $('#delete-purchase-order').on 'click', ->
     deletePo()
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
 
 $('.purchase_orders.index').ready ->
   bindPoButtons()

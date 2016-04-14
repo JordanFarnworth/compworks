@@ -6,12 +6,7 @@ class Company < ActiveRecord::Base
   scope :active, -> {where(state: :active)}
   scope :deleted, -> {where(state: :deleted)}
 
-  validates :network, presence: true
   validates :name, presence: true
-  validates :domain, presence: true
-  validates :antivirus, presence: true
-  validates :router1, presence: true
-  validates :router2, presence: true
   validates :name, uniqueness: true
 
   before_validation :infer_values

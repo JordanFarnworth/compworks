@@ -1,5 +1,9 @@
 ## SL = Service Log && II = Inventory Item
 
+$('.companies.new').ready ->
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
+
 $('.companies.index').ready ->
   #autocomplete inititalize
   $('#company-name-search').autocomplete autocompleteCompanyNameParams()

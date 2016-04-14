@@ -2,8 +2,8 @@ class PurchaseOrdersController < ApplicationController
   include Api::V1::PurchaseOrder
 
   def index
-    @paid_pos = PurchaseOrder.all.paid.includes(:company, :items).paginate(page: params[:page], per_page: 15)
-    @unpaid_pos = PurchaseOrder.all.unpaid.includes(:company, :items).paginate(page: params[:page], per_page: 15)
+    @paid_pos = PurchaseOrder.paid.order(created_at: :desc).includes(:company, :items).paginate(page: params[:page], per_page: 15)
+    @unpaid_pos = PurchaseOrder.unpaid.order(created_at: :desc).includes(:company, :items).paginate(page: params[:page], per_page: 15)
   end
 
   def show
@@ -60,6 +60,9 @@ class PurchaseOrdersController < ApplicationController
   def create
     po_params = purchase_order_params.tap {|at| at.delete("item")}
     po_params = po_params.tap {|at| at.delete("vendor")}
+    if po_params["image"] == "undefined"
+      po_params = po_params.tap {|at| at.delete("image")}
+    end
     @purchase_order = PurchaseOrder.new po_params
     @item = Item.find_or_create_by(name: purchase_order_params["item"])
     @vendor = Vendor.find_or_create_by(name: purchase_order_params["vendor"])

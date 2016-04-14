@@ -9,6 +9,8 @@ $('.purchase_orders.new').ready ->
   $('#item-input').autocomplete autocompleteItemParams()
   $('#po-submit').on 'click', ->
     createNewPo()
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
 
 $('.purchase_orders.edit').ready ->
   $('#client-input-edit').autocomplete autocompleteCompanyNameParams()
@@ -17,6 +19,8 @@ $('.purchase_orders.edit').ready ->
   $('#po-update').on 'click', ->
     updatePo()
   loadPoParams()
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
 
 $('.purchase_orders.show').ready ->
   $('#delete-purchase-order').on 'click', ->
@@ -24,6 +28,8 @@ $('.purchase_orders.show').ready ->
 
 $('.purchase_orders.index').ready ->
   bindPoButtons()
+if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+  $('.navbar').hide()
 
 bindPoButtons = ->
   $('.mark-received').on 'click', ->
@@ -38,8 +44,7 @@ markPoAsRecieved = (poId) ->
     data:
       id: poId
     success: (data) ->
-      bootbox.alert "PO \##{data.po_number} was markd as received", ->
-        location.reload()
+      location.reload()
 
 markPoAsUnRecieved = (poId) ->
   $.ajax "/api/v1/mark_po_as_unreceived",
@@ -48,8 +53,7 @@ markPoAsUnRecieved = (poId) ->
     data:
       id: poId
     success: (data) ->
-      bootbox.alert "PO \##{data.po_number} was markd as unreceived", ->
-        location.reload()
+      location.reload()
 
 loadPoParams = ->
   po = window.location.pathname.match(/\/purchase_orders\/(\d+)/)[1]
@@ -60,7 +64,7 @@ loadPoParams = ->
       populateForm(data)
 
 populateForm = (data) ->
-  $('#po-number-edit').append("<h1>\##{data.po_number}</h1>")
+  $('#po-number-edit').append("<h1><a href=\"/admin_dashboard\"><i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i></a>  \##{data.po_number}</h1>")
   if data.payment then $('#received-input-edit').prop('checked', true) else $('#received-input-edit').prop('checked', false)
   $('#client-input-edit').val(data.company.name)
   $('#client-input-edit').attr('data-id', data.company.id)
@@ -80,8 +84,7 @@ createNewPo = ->
     data: data
     success: (data) ->
       $('#loading-space').html(doneLoadingHtml())
-      bootbox.alert "Purchase Order ##{data.po_number} was created", ->
-        window.location = "/purchase_orders/#{data.id}"
+      window.location = "/purchase_orders"
 
 loadingHtml = ->
   "
@@ -110,8 +113,7 @@ updatePo = ->
     data: data
     success: (data) ->
       $('#loading-space').html(doneLoadingHtml())
-      bootbox.alert "Purchase Order ##{data.po_number} was updated", ->
-        window.location = "/purchase_orders/#{data.id}"
+      window.location = "/purchase_orders/#{data.id}"
 
 deletePo = ->
   po = window.location.pathname.match(/\/purchase_orders\/(\d+)/)[1]
@@ -123,8 +125,7 @@ deletePoFrd = (po) ->
     type: 'delete',
     dataType: 'json',
     success: (data) ->
-      bootbox.alert "Purchase Order ##{data.po_number} was deleted!", ->
-        window.location = "/purchase_orders/new"
+      window.location = "/purchase_orders"
 
 buildUpdateRequestData = ->
   formData = new FormData()

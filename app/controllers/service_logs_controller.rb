@@ -30,8 +30,8 @@ class ServiceLogsController < ApplicationController
   end
 
   def index
-    @paid_service_logs = ServiceLog.paid.active.includes(:company).paginate(page: params[:page], per_page: 15)
-    @unpaid_service_logs = ServiceLog.unpaid.active.includes(:company).paginate(page: params[:page], per_page: 15)
+    @paid_service_logs = ServiceLog.paid.order(created_at: :desc).active.includes(:company).paginate(page: params[:page], per_page: 15)
+    @unpaid_service_logs = ServiceLog.unpaid.order(created_at: :desc).active.includes(:company).paginate(page: params[:page], per_page: 15)
   end
 
   def mark_as_paid

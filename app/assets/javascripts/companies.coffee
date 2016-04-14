@@ -7,6 +7,8 @@ $('.companies.index').ready ->
   $('#restore-company-link').on 'click', ->
     $('#restore-company-div').toggleClass("hide")
     $('#company-search-div').toggleClass("hide")
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
 
 #autocomplete for restoring deleted companies
 autocompleteUndeleteCompanyNameParams = ->
@@ -58,6 +60,8 @@ $('.companies.show').ready ->
     $('#update-service-log').off 'click'
   $('#edit-company-modal').on 'hide.bs.modal', ->
     $('#update-company').off 'click'
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
   #calling load functions when the page loads
   loadInventoryData()
   loadServiceLogData()

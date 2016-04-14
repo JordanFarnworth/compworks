@@ -24,12 +24,16 @@ $('.service_logs.new').ready ->
     $('#date-input').pickadate()
   $('#sl-submit').on 'click', ->
     submitServiceLog()
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
 
 $('.service_logs.index').ready ->
   $('.mark-paid').on 'click', ->
     markSlAsPaid($(@).attr('data-id'))
   $('.mark-unpaid').on 'click', ->
     markSlAsUnPaid($(@).attr('data-id'))
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
 
 
 $('.service_logs.show').ready ->
@@ -41,6 +45,9 @@ $('.service_logs.show').ready ->
     deleteServiceLog()
   $('#date-input-edit').on 'click', ->
     $('#date-input-edit').pickadate()
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
+
 
 markSlAsPaid = (slId) ->
   $.ajax "/api/v1/service_logs/mark_paid",
@@ -102,8 +109,7 @@ submitServiceLog = ->
     data: data
     success: (data) ->
       $('#loading-space').html(doneLoadingHtml())
-      bootbox.alert "Service Log Created", ->
-        window.location = "/service_logs"
+      window.location = "/service_logs"
 
 buildSlUpdateRequestData = ->
   formData = new FormData()
@@ -138,8 +144,7 @@ updateServiceLog = () ->
     data: data
     success: (data) ->
       $('#loading-space').html(doneLoadingHtml())
-      bootbox.alert "Service Log Updated", ->
-        window.location = "/service_logs"
+      window.location = "/service_logs"
 
 autocompleteCompanyNameParams = ->
   {

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="row-fluid text-center">
-          <h2>Unpaid Service Logs</h2>
+          <h4><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a>  Unpaid Service Logs <a href="/service_logs/new"><i class="fa fa-plus"></i></a></h4>
         </div>
         <% @unpaid_service_logs.each do |upsl| %>
           <div class="list-group">
@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-6">
         <div class="row-fluid text-center">
-          <h2>Received Service Logs</h2>
+          <h4><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a>  Received Service Logs  <a href="/service_logs/new"><i class="fa fa-plus"></i></a></h4>
         </div>
         <% @paid_service_logs.each do |psl| %>
           <div class="list-group">

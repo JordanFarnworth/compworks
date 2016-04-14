@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="row-fluid text-center">
-          <h2>Unreceived Purchase Order</h2>
+          <h4><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a>  Unreceived Purchase Order  <a href="/purchase_orders/new"><i class="fa fa-plus"></i></a></h4>
         </div>
         <% @unpaid_pos.each do |upo| %>
           <div class="list-group">
@@ -23,7 +23,7 @@
       </div>
       <div class="col-md-6">
         <div class="row-fluid text-center">
-          <h2>Received Purchase Order</h2>
+          <h4><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a>  Received Purchase Order  <a href="/purchase_orders/new"><i class="fa fa-plus"></i></a></h4>
       </div>
         <% @paid_pos.each do |ppo| %>
           <div class="list-group">

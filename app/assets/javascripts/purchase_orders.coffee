@@ -30,8 +30,8 @@ $('.purchase_orders.show').ready ->
 
 $('.purchase_orders.index').ready ->
   bindPoButtons()
-if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
-  $('.navbar').hide()
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.navbar').hide()
 
 bindPoButtons = ->
   $('.mark-received').on 'click', ->

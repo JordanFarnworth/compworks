@@ -16,7 +16,7 @@ class PurchaseOrder < ActiveRecord::Base
 
   private
   def set_po_number!
-    self.po_number ||= self.id + 16000
+    self.po_number ||= self.id + 16040
     self.save!
   end
 end

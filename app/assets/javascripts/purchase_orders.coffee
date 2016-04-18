@@ -1,12 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-
 $('.purchase_orders.new').ready ->
   $('#client-input').autocomplete autocompleteCompanyNameParams()
   $('#vendor-input').autocomplete autocompleteVendorParams()
   $('#item-input').autocomplete autocompleteItemParams()
+  $('#vendor-input').val("Universal Systems")
+  $('#clear-vendor').on 'click', ->
+    $('#vendor-input').val("")
   $('#po-submit').on 'click', ->
     createNewPo()
   if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent

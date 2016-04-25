@@ -58,9 +58,6 @@ class PurchaseOrdersController < ApplicationController
   end
 
   def create
-    puts "********************************************************************************"
-    puts "Getting here"
-    puts "********************************************************************************"
     po_params = purchase_order_params.tap {|at| at.delete("item")}
     po_params = po_params.tap {|at| at.delete("vendor")}
     if po_params["image"] == "undefined"

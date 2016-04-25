@@ -1,6 +1,12 @@
 class ItemsController < ApplicationController
   include Api::V1::Item
 
+  def index
+    @items = Item.all
+    render json: @items, status: :ok
+  end
+
+
   def item_search
     @items = Item.all
     if params[:search_term]

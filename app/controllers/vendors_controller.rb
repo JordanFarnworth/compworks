@@ -1,6 +1,11 @@
 class VendorsController < ApplicationController
     include Api::V1::Vendor
 
+  def index
+    @vendors = Vendor.all
+    render json: @vendors, status: :ok
+  end
+
   def vendor_search
     @vendors = Vendor.all
     if params[:search_term]

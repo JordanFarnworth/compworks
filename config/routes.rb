@@ -29,6 +29,8 @@ Rails.application.routes.draw do
         post 'inventory_items' => 'inventory_items#create'
       end
       get 'item_search' => 'items#item_search'
+      get 'items' => 'items#index'
+      get 'vendors' => 'vendors#index'
       get 'vendor_search' => 'vendors#vendor_search'
       post 'mark_po_as_received' => 'purchase_orders#make_po_received'
       post 'mark_po_as_unreceived' => 'purchase_orders#make_po_unreceived'

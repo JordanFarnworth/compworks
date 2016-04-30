@@ -21,7 +21,6 @@ class ServiceLogsController < ApplicationController
     @sl = ServiceLog.find params[:id]
     respond_to do |format|
       format.html do
-
       end
       format.json do
         render json: service_log_json(@sl), status: :ok
@@ -30,8 +29,7 @@ class ServiceLogsController < ApplicationController
   end
 
   def index
-    @paid_service_logs = ServiceLog.paid.order(created_at: :desc).active.includes(:company).paginate(page: params[:page], per_page: 15)
-    @unpaid_service_logs = ServiceLog.unpaid.order(created_at: :desc).active.includes(:company).paginate(page: params[:page], per_page: 15)
+    @service_logs = ServiceLog.order(date: :desc).active.includes(:company).paginate(page: params[:page], per_page: 15)
   end
 
   def mark_as_paid

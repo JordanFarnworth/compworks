@@ -19,6 +19,10 @@ class ServiceLog < ActiveRecord::Base
    save
   end
 
+  def paid?
+    self.payment
+  end
+
   def mark_as_paid!
     self.payment = true
     save

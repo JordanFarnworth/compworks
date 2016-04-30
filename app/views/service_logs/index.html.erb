@@ -1,47 +1,30 @@
 <div class="containter-fluid">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="row-fluid text-center">
-          <h4><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a>  Unpaid Service Logs <a href="/service_logs/new"><i class="fa fa-plus"></i></a></h4>
+          <h3><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a> Service Logs <a href="/service_logs/new"><i class="fa fa-plus"></i></a></h3>
         </div>
-        <% @unpaid_service_logs.each do |upsl| %>
+        <% @service_logs.each do |sl| %>
           <div class="list-group">
-            <div class="list-group-item" data-id="<%= upsl.id %>">
+            <div class="list-group-item" data-id="<%= sl.id %>">
               <h3 class="list-group-item-heading">
-                <%= link_to upsl.date.to_time.strftime('%B %e, %Y'), upsl %>
-                <span class="pull-right"><button data-id="<%= upsl.id %>" class="btn btn-primary mark-paid" type="button" name="button">Mark as paid</button></span>
+                <%= link_to sl.date.to_time.strftime('%B %e, %Y'), sl %>
+                <% if sl.paid? %>
+                  <span class="pull-right"><i style="color:green" data-id="<%= sl.id %>" class="fa fa-money fa-2x mark-unpaid" aria-hidden="true"></i></span>
+                <% else %>
+                  <span class="pull-right"><i style="color:red" data-id="<%= sl.id %>" class="fa fa-money fa-2x mark-paid" aria-hidden="true"></i></span>
+                <% end %>
               </h3>
-              <h5>Client: <%= upsl.company.name %></h5>
+              <h4>Client: <%= sl.company.name %></h4>
+              <h5>Length: <%= sl.length %></h5>
               <p>
-                <%= upsl.service_preformed %>
+                <%= sl.service_preformed %>
               </p>
-              <h5 class="list-group-item-text"> Received: <%= upsl.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
             </div>
           </div>
         <% end %>
-        <%= will_paginate @unpaid_service_logs %>
-      </div>
-      <div class="col-md-6">
-        <div class="row-fluid text-center">
-          <h4><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a>  Received Service Logs  <a href="/service_logs/new"><i class="fa fa-plus"></i></a></h4>
-        </div>
-        <% @paid_service_logs.each do |psl| %>
-          <div class="list-group">
-            <div class="list-group-item" data-id="<%= psl.id %>">
-              <h3 class="list-group-item-heading">
-                <%= link_to psl.date.to_time.strftime('%B %e, %Y'), psl %>
-                <span class="pull-right"><button data-id="<%= psl.id %>" class="btn btn-warning mark-unpaid" type="button" name="button">Mark as unpaid</button></span>
-              </h3>
-              <h5>Client: <%= psl.company.name %></h5>
-              <p>
-                <%= psl.service_preformed %>
-              </p>
-              <h5 class="list-group-item-text"> Paid: <%= psl.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
-            </div>
-          </div>
-        <% end %>
-        <%= will_paginate @paid_service_logs %>
+        <%= will_paginate @service_logs %>
       </div>
     </div>
   </div>

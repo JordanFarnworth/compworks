@@ -13,8 +13,8 @@
                 <span class="pull-right"><button data-id="<%= upo.id %>" class="btn btn-primary mark-received" type="button" name="button">Mark as received</button></span>
               </h3>
               <h5 class="list-group-item-text"> Received: <%= upo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
-              <h5>Client: <%= upo.company.name %>
-                <span class="pull-right">Item: <%= upo.items.first.name %></span>
+              <h5>Client: <%= upo.company.try(:name) %>
+                <span class="pull-right">Item: <%= upo.items.first.try(:name) %></span>
               </h5>
             </div>
           </div>
@@ -33,8 +33,8 @@
                 <span class="pull-right"><button data-id="<%= ppo.id %>" class="btn btn-warning mark-unreceived" type="button" name="button">Mark as unreceived</button></span>
               </h3>
               <h5 class="list-group-item-text"> Received: <%= ppo.payment ? "<i class=\"fa fa-check-circle-o fa-2x\"style=\"color:green\"></i>".html_safe : "<i class=\"fa fa-times-circle-o fa-2x\" style=\"color:red\"></i>".html_safe %></h5>
-              <h5>Client: <%= ppo.company.name %>
-                <span class="pull-right">Item: <%= ppo.items.first.name %></span>
+              <h5>Client: <%= ppo.company.try(:name) %>
+                <span class="pull-right">Item: <%= ppo.items.first.try(:name) %></span>
               </h5>
             </div>
           </div>

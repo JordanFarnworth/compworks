@@ -32,7 +32,7 @@
           </fieldset>
           <fieldset class="form-group">
             <label for="item-input">Company/Client for Service Log</label>
-            <input data-id="<%= @sl.company.id %>" class="form-control" id="client-input-edit" placeholder="Childrens Dental..">
+            <input data-id="<%= @sl.company.try(:id) %>" class="form-control" id="client-input-edit" placeholder="Childrens Dental..">
             <small>This field should auto populate. Search by doctor or company name.</small>
           </fieldset>
          <fieldset>

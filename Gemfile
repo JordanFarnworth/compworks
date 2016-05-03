@@ -68,3 +68,4 @@ gem 'simplecov', :require => false, :group => :test
 
 gem 'pry-rails'
 gem 'rails_12factor', group: :production
+gem 'puma'

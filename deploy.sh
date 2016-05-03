@@ -2,4 +2,4 @@
 bundle exec rake assets:precompile ENV=production
 git add -u
 git commit -m \""$1"\"
-git push $2 master
+git push $2 master -f

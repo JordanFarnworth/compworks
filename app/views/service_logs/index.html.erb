@@ -5,25 +5,42 @@
         <div class="row-fluid text-center">
           <h3><a href="/admin_dashboard"><i class="fa fa-sign-out" aria-hidden="true"></i></a> Service Logs <a href="/service_logs/new"><i class="fa fa-plus"></i></a></h3>
         </div>
-        <% @service_logs.each do |sl| %>
-          <div class="list-group">
-            <div class="list-group-item" data-id="<%= sl.id %>">
-              <h3 class="list-group-item-heading">
-                <%= link_to sl.date.to_time.strftime('%B %e, %Y'), sl %>
-                <% if sl.paid? %>
-                  <span class="pull-right"><i style="color:green" data-id="<%= sl.id %>" class="fa fa-money fa-2x mark-unpaid" aria-hidden="true"></i></span>
-                <% else %>
-                  <span class="pull-right"><i style="color:red" data-id="<%= sl.id %>" class="fa fa-money fa-2x mark-paid" aria-hidden="true"></i></span>
-                <% end %>
-              </h3>
-              <h4>Client: <%= sl.company.try(:name) %></h4>
-              <h5>Length: <%= sl.length %> hours</h5>
-              <p>
-                <%= sl.service_preformed %>
-              </p>
-            </div>
-          </div>
-        <% end %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                Date
+              </th>
+              <th>
+                Company
+              </th>
+              <th>
+                Length
+              </th>
+              <th>
+                Notes
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @service_logs.each do |sl| %>
+              <tr>
+                <td>
+                  <%= link_to sl.date.to_time.strftime('%B %e, %Y'), sl %>
+                </td>
+                <td>
+                  <%= sl.company.try(:name) %>
+                </td>
+                <td>
+                  <%= sl.length + " hours" %>
+                </td>
+                <td>
+                  <%= sl.notes.truncate_words(4) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
         <%= will_paginate @service_logs %>
       </div>
     </div>

@@ -92,7 +92,6 @@ getServiceLog = ->
       if data.payment then $('#received-payment-edit').prop('checked', true) else $('#received-payment-edit').prop('checked', false)
       $('#date-input-edit').val(new Date(data.date).toDateString())
       $('#length-input-edit').val(data.length)
-      $('#sp-input-edit').val(data.service_preformed)
       $('#notes-input-edit').val(data.notes)
       $('#client-input-edit').val(data.company)
 
@@ -115,7 +114,6 @@ buildSlUpdateRequestData = ->
   formData = new FormData()
   formData.append 'service_log[date]', $('#date-input-edit').val()
   formData.append 'service_log[length]', $('#length-input-edit').val()
-  formData.append 'service_log[service_preformed]', $('#sp-input-edit').val()
   formData.append 'service_log[notes]', $('#notes-input-edit').val()
   formData.append 'service_log[company_id]', $('#client-input-edit').attr('data-id')
   if $('#received-payment-edit').prop('checked') then formData.append 'service_log[payment]', true else formData.append 'service_log[payment]', false
@@ -125,7 +123,6 @@ buildSlRequestData = ->
   formData = new FormData()
   formData.append 'service_log[date]', $('#date-input').val()
   formData.append 'service_log[length]', $('#length-input').val()
-  formData.append 'service_log[service_preformed]', $('#sp-input').val()
   formData.append 'service_log[notes]', $('#notes-input').val()
   formData.append 'service_log[company_id]', $('#client-input').attr('data-id')
   if $('#received-payment').prop('checked') then formData.append 'service_log[payment]', true else formData.append 'service_log[payment]', false

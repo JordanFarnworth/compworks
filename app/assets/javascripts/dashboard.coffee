@@ -7,6 +7,28 @@ $('.dashboard.index').ready ->
   $('.navbar-brand').hide()
   checkForMobile()
 
+$('.dashboard.admin_dashboard').ready ->
+  if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
+    $('.container').html(
+      "
+        <div class='col-md-12 text-center'>
+          <ol>
+            <li><a href='/purchase_orders/new'>New Purchase Order</a></li>
+            <br>
+            <li><a href='/purchase_orders'>All Purchase Orders</a></li>
+            <br>
+            <li><a href='/service_logs/new'>New Service Log</a></li>
+            <br>
+            <li><a href='/service_logs'>All Service Logs</a></li>
+            <br>
+            <li><a href='/companies/new'>New Company</a></li>
+            <br>
+            <li><a href='/companies'>All Companies</a></li>
+          </ol>
+        </div>
+      "
+    )
+
 checkForMobile = ->
   if /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test navigator.userAgent
     $('.homepage-hero-module').remove()

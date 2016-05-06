@@ -2,8 +2,7 @@ class PurchaseOrdersController < ApplicationController
   include Api::V1::PurchaseOrder
 
   def index
-    @paid_pos = PurchaseOrder.paid.order(created_at: :desc).includes(:company, :items).paginate(page: params[:page], per_page: 15)
-    @unpaid_pos = PurchaseOrder.unpaid.order(created_at: :desc).includes(:company, :items).paginate(page: params[:page], per_page: 15)
+    @purchase_orders = PurchaseOrder.order(created_at: :desc).includes(:company, :items, :vendors).paginate(page: params[:page], per_page: 15)
   end
 
   def show

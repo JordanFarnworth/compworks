@@ -12,21 +12,19 @@ $('.dashboard.admin_dashboard').ready ->
     $('.container').html(
       "
         <div class='col-md-12 text-center'>
-          <ul>
-            <br>
-            <br>
-            <li><a href='/purchase_orders/new'>New Purchase Order</a></li>
-            <br>
-            <li><a href='/purchase_orders'>All Purchase Orders</a></li>
-            <br>
-            <li><a href='/service_logs/new'>New Service Log</a></li>
-            <br>
-            <li><a href='/service_logs'>All Service Logs</a></li>
-            <br>
-            <li><a href='/companies/new'>New Company</a></li>
-            <br>
-            <li><a href='/companies'>All Companies</a></li>
-          </ou>
+          <br>
+          <br>
+          <a href='/purchase_orders/new'><h5>New Purchase Order</h5></a>
+          <br>
+          <a href='/purchase_orders'><h5>All Purchase Orders</h5></a>
+          <br>
+          <a href='/service_logs/new'><h5>New Service Log</h5></a>
+          <br>
+          <a href='/service_logs'><h5>All Service Logs</h5></a>
+          <br>
+          <a href='/companies/new'><h5>New Company</h5></a>
+          <br>
+          <a href='/companies'><h5>All Companies</h5></a>
         </div>
       "
     )

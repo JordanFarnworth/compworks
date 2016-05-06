@@ -12,7 +12,9 @@ $('.dashboard.admin_dashboard').ready ->
     $('.container').html(
       "
         <div class='col-md-12 text-center'>
-          <ol>
+          <ul>
+            <br>
+            <br>
             <li><a href='/purchase_orders/new'>New Purchase Order</a></li>
             <br>
             <li><a href='/purchase_orders'>All Purchase Orders</a></li>
@@ -24,7 +26,7 @@ $('.dashboard.admin_dashboard').ready ->
             <li><a href='/companies/new'>New Company</a></li>
             <br>
             <li><a href='/companies'>All Companies</a></li>
-          </ol>
+          </ou>
         </div>
       "
     )

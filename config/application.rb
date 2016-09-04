@@ -25,6 +25,7 @@ module Cworks
     config.active_job.queue_adapter = :delayed_job
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += [config.root.join('lib').to_s]
+
     unless Rails.env.test?
       config.before_initialize do
         if ENV['AWS_BUCKET']
@@ -42,5 +43,6 @@ module Cworks
         end
       end
     end
+
   end
 end

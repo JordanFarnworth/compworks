@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'paperclip'
+gem 'paperclip', '~> 4.3.2'
 gem 'aws-sdk', '~> 1.66.0'
 gem "sentry-raven"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -58,7 +58,6 @@ gem 'will_paginate-bootstrap'
 gem 'font-awesome-rails'
 gem 'vider', github: 'wazery/vider'
 
-gem 'clockwork', git: 'https://github.com/tomykaira/clockwork.git'
 gem 'cancan'
 gem 'bootstrap_form'
 gem 'daemons'

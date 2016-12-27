@@ -42,13 +42,15 @@ ActiveRecord::Schema.define(version: 20160504161856) do
   end
 
   create_table "inventory_items", force: :cascade do |t|
+    t.integer  "companies_id"
     t.string   "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "company_id"
     t.text     "features"
   end
 
+  add_index "inventory_items", ["companies_id"], name: "index_inventory_items_on_companies_id", using: :btree
   add_index "inventory_items", ["company_id"], name: "index_inventory_items_on_company_id", using: :btree
 
   create_table "item_joiners", force: :cascade do |t|
@@ -106,12 +108,14 @@ ActiveRecord::Schema.define(version: 20160504161856) do
     t.string   "length"
     t.text     "notes"
     t.string   "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "companies_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "company_id"
     t.boolean  "payment"
   end
 
+  add_index "service_logs", ["companies_id"], name: "index_service_logs_on_companies_id", using: :btree
   add_index "service_logs", ["company_id"], name: "index_service_logs_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -129,8 +133,12 @@ ActiveRecord::Schema.define(version: 20160504161856) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "api_keys", "users"
+  add_foreign_key "inventory_items", "companies"
   add_foreign_key "item_joiners", "items"
+  add_foreign_key "login_sessions", "users"
   add_foreign_key "purchase_order_vendors", "purchase_orders"
   add_foreign_key "purchase_order_vendors", "vendors"
   add_foreign_key "purchase_orders", "companies"
+  add_foreign_key "service_logs", "companies"
 end

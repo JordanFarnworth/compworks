@@ -6,10 +6,9 @@ class CreateServiceLogs < ActiveRecord::Migration
       t.string :service_preformed
       t.text :notes
       t.string :state
-      t.references :company_id, index: true
+      t.references :companies, index: true
 
       t.timestamps null: false
     end
-    add_foreign_key :service_logs, :company_ids
   end
 end

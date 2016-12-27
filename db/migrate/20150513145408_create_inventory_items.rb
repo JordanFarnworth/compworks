@@ -2,7 +2,7 @@ class CreateInventoryItems < ActiveRecord::Migration
   def change
     create_table :inventory_items do |t|
       t.text :attributes
-      t.references :company_id, index: true
+      t.references :companies, index: true
       t.string :state
 
       t.timestamps null: false
